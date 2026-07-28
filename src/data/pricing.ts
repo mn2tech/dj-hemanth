@@ -12,7 +12,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "bronze",
     name: "Bronze",
-    price: "£499",
+    price: "$499",
     description: "Perfect for intimate gatherings and small celebrations.",
     color: "sapphire",
     features: [
@@ -27,7 +27,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "silver",
     name: "Silver",
-    price: "£799",
+    price: "$799",
     description: "Ideal for medium-sized events and birthday parties.",
     color: "sapphire",
     features: [
@@ -43,7 +43,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "gold",
     name: "Gold",
-    price: "£1,299",
+    price: "$1,299",
     description: "Our most popular package for weddings and sangeets.",
     color: "gold",
     popular: true,
@@ -61,7 +61,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "platinum",
     name: "Platinum",
-    price: "£2,499",
+    price: "$2,499",
     description: "The ultimate Bollywood experience for grand celebrations.",
     color: "magenta",
     features: [
