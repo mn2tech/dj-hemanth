@@ -29,7 +29,7 @@ export default function Services() {
           </h2>
           <p className="section-subtitle mx-auto">
             Tailored DJ experiences for every type of celebration, backed by
-            years of Bollywood expertise.
+            decades of Bollywood expertise since 1992.
           </p>
         </div>
 

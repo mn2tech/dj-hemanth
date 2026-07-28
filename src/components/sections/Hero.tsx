@@ -35,7 +35,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-sm font-medium mb-6">
-            🎵 Premier Bollywood DJ in the US
+            🎵 DJing since 1992 — Premier Bollywood DJ in the US
           </span>
         </motion.div>
 

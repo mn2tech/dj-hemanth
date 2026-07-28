@@ -12,10 +12,11 @@ export const siteConfig = {
     facebook: "https://facebook.com/djhemanth",
     youtube: "https://youtube.com/djhemanth",
   },
+  djSince: 1992,
   stats: {
     events: 500,
     clients: 450,
-    years: 12,
+    years: new Date().getFullYear() - 1992,
     songs: 5000,
   },
 };

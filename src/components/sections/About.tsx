@@ -50,10 +50,10 @@ export default function About() {
               Meet <span className="text-gold">DJ Hemanth</span>
             </h2>
             <p className="text-light-gray/70 leading-relaxed mb-6">
-              With over {siteConfig.stats.years} years of experience in the Bollywood DJ scene,
-              I&apos;ve performed at {siteConfig.stats.events}+ events across the US and
-              internationally. My passion is creating the perfect musical journey for every
-              celebration — whether it&apos;s the emotional walk down the aisle or the
+              DJing since {siteConfig.djSince} — over {siteConfig.stats.years} years in the
+              Bollywood DJ scene. I&apos;ve performed at {siteConfig.stats.events}+ events across
+              the US and internationally. My passion is creating the perfect musical journey for
+              every celebration — whether it&apos;s the emotional walk down the aisle or the
               high-energy sangeet dance floor.
             </p>
             <p className="text-light-gray/70 leading-relaxed mb-8">
