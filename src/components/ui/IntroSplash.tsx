@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/data/site";
 
@@ -38,9 +37,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
     const playPromise = audio.play();
 
     if (playPromise) {
-      playPromise.catch(() => {
-        // Autoplay blocked — music starts on first tap via onClick
-      });
+      playPromise.catch(() => {});
     }
 
     const timer = setTimeout(complete, INTRO_DURATION_MS);
@@ -81,45 +78,39 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.6, rotate: -30 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-10 flex flex-col items-center text-center px-6"
             >
-              <div className="relative w-[min(72vw,280px)] h-[min(72vw,280px)] mb-2 overflow-hidden">
-                <Image
-                  src={siteConfig.logo}
-                  alt={siteConfig.name}
-                  fill
-                  priority
-                  className="object-cover object-top"
-                  sizes="280px"
-                />
-              </div>
+              <p className="text-5xl sm:text-6xl font-bold tracking-tight mb-2">
+                <span className="text-brand-pink font-display italic">DJ</span>{" "}
+                <span className="text-white">HEMANTH</span>
+              </p>
 
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="text-brand-pink font-semibold tracking-wide text-lg sm:text-xl"
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="text-brand-pink font-semibold tracking-[0.25em] uppercase text-sm"
               >
-                {siteConfig.djTitle}
+                {siteConfig.tagline}
               </motion.p>
 
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.5 }}
-                className="text-light-gray/60 text-sm mt-2 tracking-wide"
+                transition={{ delay: 0.75, duration: 0.5 }}
+                className="text-light-gray/50 text-sm mt-4 tracking-wide"
               >
-                {siteConfig.tagline}
+                {siteConfig.heroSubheadline}
               </motion.p>
 
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
-                className="text-light-gray/30 text-xs mt-8 tracking-widest uppercase"
+                className="text-light-gray/30 text-xs mt-10 tracking-widest uppercase"
               >
                 Tap to enter
               </motion.p>

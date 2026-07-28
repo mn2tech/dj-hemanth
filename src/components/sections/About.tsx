@@ -47,7 +47,7 @@ export default function About() {
 
           <div>
             <h2 className="section-title">
-              Meet <span className="text-gold">{siteConfig.name}</span>
+              Meet <span className="text-gold">DJ Hemanth</span>
             </h2>
             <p className="text-light-gray/70 leading-relaxed mb-6">
               DJing since {siteConfig.djSince} — over {siteConfig.stats.years} years in the

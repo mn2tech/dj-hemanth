@@ -1,7 +1,10 @@
 export const siteConfig = {
-  name: "Hemant Samson",
+  name: "DJ Hemanth",
   djTitle: "Bollywood DJ",
-  tagline: "Your Celebration, Our Rhythm",
+  tagline: "Music Is My Language",
+  heroHeadline: ["Feel the Beat.", "Live the Night."],
+  heroSubheadline: "Music. Energy. Vibes.",
+  heroDescription: "Bringing the perfect sound to every moment.",
   description:
     "Premier Bollywood DJ for weddings, sangeet ceremonies, corporate events, and private parties. Creating magical musical experiences across the US.",
   phone: "+1 (555) 123-4567",
@@ -9,6 +12,7 @@ export const siteConfig = {
   address: "United States",
   whatsapp: "15551234567",
   logo: "/hemant-samson-logo.png",
+  heroImage: "/dj-hemanth-hero.png",
   social: {
     instagram: "https://instagram.com/djhemanth",
     facebook: "https://facebook.com/djhemanth",
@@ -16,6 +20,12 @@ export const siteConfig = {
   },
   djSince: 1992,
   introMusic: "/intro-music.mp3",
+  heroFeatures: [
+    { label: "Live Sets", icon: "headphones" },
+    { label: "Good Music", icon: "music" },
+    { label: "Great Vibes", icon: "users" },
+    { label: "Pure Energy", icon: "activity" },
+  ],
   stats: {
     events: 500,
     clients: 450,
