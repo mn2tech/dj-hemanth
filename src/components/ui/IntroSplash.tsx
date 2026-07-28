@@ -46,7 +46,7 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
 
   return (
     <>
-      <audio ref={audioRef} src={siteConfig.introMusic} preload="auto" />
+      <audio ref={audioRef} src={siteConfig.introMusic} preload="auto" loop />
 
       <AnimatePresence onExitComplete={() => document.body.style.overflow = ""}>
         {show && (
@@ -105,6 +105,28 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
               >
                 {siteConfig.heroSubheadline}
               </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+                className="flex items-end justify-center gap-1 h-8 mt-6"
+                aria-hidden
+              >
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="w-1.5 rounded-full bg-gold"
+                    animate={{ height: ["20%", "100%", "35%", "85%", "20%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 0.55,
+                      delay: i * 0.08,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </motion.div>
 
               <motion.p
                 initial={{ opacity: 0 }}

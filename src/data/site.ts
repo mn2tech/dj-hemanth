@@ -20,7 +20,7 @@ export const siteConfig = {
     youtube: "https://youtube.com/djhemanth",
   },
   djSince: 1992,
-  introMusic: "/intro-music.mp3",
+  introMusic: "/intro-tabla.mp3",
   heroFeatures: [
     { label: "Live Sets", icon: "headphones" },
     { label: "Good Music", icon: "music" },
