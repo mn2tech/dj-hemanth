@@ -10,6 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         gold: "#FFD700",
+        "brand-yellow": "#FEDD00",
+        "brand-purple": "#4A2B6D",
+        "brand-pink": "#F8306D",
         "deep-purple": "#2D1B4E",
         magenta: "#E91E63",
         sapphire: "#0F3460",
@@ -33,7 +36,8 @@ const config: Config = {
       },
       animation: {
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        float: "float 6s ease-in-out infinite",
+        "spin-slow": "spin 48s linear infinite",
+        "spin-slower": "spin 90s linear infinite",
       },
       keyframes: {
         float: {

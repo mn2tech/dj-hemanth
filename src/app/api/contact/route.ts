@@ -67,13 +67,13 @@ async function sendEmails(data: ContactPayload) {
   await transporter.sendMail({
     from: SMTP_USER,
     to: data.email,
-    subject: "Thanks for your inquiry — DJ Hemanth",
+    subject: "Thanks for your inquiry — Hemant Samson",
     html: `
       <h2>Thank you, ${data.name}!</h2>
       <p>I've received your booking inquiry for your <strong>${data.eventType}</strong> on <strong>${data.eventDate}</strong>.</p>
       <p>I'll review the details and get back to you within 24 hours.</p>
       <p>In the meantime, feel free to reach out directly at ${toEmail}.</p>
-      <p>Best regards,<br/>DJ Hemanth</p>
+      <p>Best regards,<br/>Hemant Samson</p>
     `,
   });
 }

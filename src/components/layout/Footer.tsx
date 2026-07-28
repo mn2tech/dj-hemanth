@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Music2, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import SocialIcon from "@/components/ui/SocialIcon";
 
@@ -37,11 +37,22 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto section-padding !pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Music2 className="w-8 h-8 text-gold" />
-              <span className="font-display text-2xl font-bold text-white">
-                {siteConfig.name}
-              </span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gold/30 shrink-0">
+                <Image
+                  src={siteConfig.logo}
+                  alt={siteConfig.name}
+                  fill
+                  className="object-cover object-top scale-150"
+                  sizes="40px"
+                />
+              </div>
+              <div>
+                <span className="font-display text-xl font-bold text-white block">
+                  {siteConfig.name}
+                </span>
+                <span className="text-brand-pink text-xs font-medium">{siteConfig.djTitle}</span>
+              </div>
             </div>
             <p className="text-light-gray/60 text-sm leading-relaxed mb-6">
               {siteConfig.description}

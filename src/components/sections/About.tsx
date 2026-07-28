@@ -29,7 +29,7 @@ export default function About() {
             <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1571266028247-b8ef25b8f247?w=800&q=80"
-                alt="DJ Hemanth"
+                alt={siteConfig.name}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 400px"
@@ -47,7 +47,7 @@ export default function About() {
 
           <div>
             <h2 className="section-title">
-              Meet <span className="text-gold">DJ Hemanth</span>
+              Meet <span className="text-gold">{siteConfig.name}</span>
             </h2>
             <p className="text-light-gray/70 leading-relaxed mb-6">
               DJing since {siteConfig.djSince} — over {siteConfig.stats.years} years in the

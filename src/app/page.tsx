@@ -9,10 +9,12 @@ import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import Contact from "@/components/sections/Contact";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import IntroSplash from "@/components/ui/IntroSplash";
 
 export default function Home() {
   return (
     <>
+      <IntroSplash />
       <Navbar />
       <main>
         <Hero />

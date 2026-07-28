@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Music2 } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -43,13 +44,24 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2 group">
-            <div className="p-2 rounded-full bg-gold/10 group-hover:bg-gold/20 transition-colors">
-              <Music2 className="w-6 h-6 text-gold" />
+          <a href="#home" className="flex items-center gap-3 group">
+            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-gold/30 group-hover:border-gold/60 transition-colors shrink-0">
+              <Image
+                src={siteConfig.logo}
+                alt={siteConfig.name}
+                fill
+                className="object-cover object-top scale-150"
+                sizes="44px"
+              />
             </div>
-            <span className="font-display text-xl md:text-2xl font-bold text-white">
-              {siteConfig.name}
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="font-display text-lg md:text-xl font-bold text-white">
+                {siteConfig.name}
+              </span>
+              <span className="text-brand-pink text-xs font-medium tracking-wide">
+                {siteConfig.djTitle}
+              </span>
+            </div>
           </a>
 
           <div className="hidden lg:flex items-center gap-8">
