@@ -88,7 +88,7 @@ export default function Contact() {
               <h3 className="text-white font-semibold text-lg">Contact Info</h3>
 
               <a
-                href={`tel:${siteConfig.phone}`}
+                href={`tel:${siteConfig.phoneTel}`}
                 className="flex items-center gap-4 group"
               >
                 <div className="p-3 rounded-xl bg-gold/10 group-hover:bg-gold/20 transition-colors">

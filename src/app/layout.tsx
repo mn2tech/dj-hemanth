@@ -59,7 +59,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: siteConfig.name,
   description: siteConfig.description,
-  telephone: siteConfig.phone,
+  telephone: siteConfig.phoneTel,
   email: siteConfig.email,
   address: {
     "@type": "PostalAddress",

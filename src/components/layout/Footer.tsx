@@ -101,7 +101,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-light-gray/60 text-sm">
                 <Phone size={16} className="text-gold shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="hover:text-gold transition-colors">
+                <a href={`tel:${siteConfig.phoneTel}`} className="hover:text-gold transition-colors">
                   {siteConfig.phone}
                 </a>
               </li>

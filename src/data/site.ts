@@ -7,10 +7,11 @@ export const siteConfig = {
   heroDescription: "Bringing the perfect sound to every moment.",
   description:
     "Premier Bollywood DJ for weddings, sangeet ceremonies, corporate events, and private parties. Creating magical musical experiences across the US.",
-  phone: "+1 (555) 123-4567",
+  phone: "(202) 391-1581",
+  phoneTel: "+12023911581",
   email: "bookings@djhemanth.com",
   address: "United States",
-  whatsapp: "15551234567",
+  whatsapp: "12023911581",
   logo: "/hemant-samson-logo.png",
   heroImage: "/dj-hemanth-hero.png",
   social: {
