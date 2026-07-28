@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Music2, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import SocialIcon from "@/components/ui/SocialIcon";
@@ -143,7 +144,31 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <a
+            href="https://nm2tech.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mx-auto flex w-fit flex-col items-center gap-2"
+            aria-label="Designed by NM2TECH — visit nm2tech.com"
+          >
+            <Image
+              src="/nm2tech-logo.png"
+              alt="NM2TECH logo"
+              width={160}
+              height={100}
+              className="h-16 w-auto opacity-85 transition-opacity group-hover:opacity-100"
+            />
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-light-gray/50 transition-colors group-hover:text-[#81C043]">
+              Designed by NM2TECH
+            </span>
+            <span className="text-[11px] text-light-gray/40 tracking-[0.18em] uppercase">
+              Next Move
+            </span>
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-light-gray/40 text-sm">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
