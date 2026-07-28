@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   metadataBase: new URL("https://dj-hemanth.com"),
   alternates: {
-    canonical: "https://dj-hemanth.com",
+    canonical: siteConfig.siteUrl,
   },
   openGraph: {
     title: `${siteConfig.name} | Bollywood DJ for Weddings & Events`,
@@ -41,12 +41,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
-    url: "https://dj-hemanth.com",
+    url: siteConfig.siteUrl,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1536,
+        height: 1024,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | Bollywood DJ`,
     description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
@@ -66,9 +75,9 @@ const jsonLd = {
     addressLocality: "United States",
     addressCountry: "US",
   },
-  url: "https://dj-hemanth.com",
+  url: siteConfig.siteUrl,
   priceRange: "$$",
-  image: "https://images.unsplash.com/photo-1470225620780-dba8ba9361cd?w=1200&q=80",
+  image: `${siteConfig.siteUrl}${siteConfig.ogImage}`,
   sameAs: [
     siteConfig.social.instagram,
     siteConfig.social.facebook,

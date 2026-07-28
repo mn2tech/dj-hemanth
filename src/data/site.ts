@@ -13,6 +13,7 @@ export const siteConfig = {
   address: "United States",
   whatsapp: "12023911581",
   siteUrl: "https://dj-hemanth.com",
+  ogImage: "/og-image.png",
   logo: "/hemant-samson-logo.png",
   heroImage: "/dj-hemanth-hero.png",
   social: {
