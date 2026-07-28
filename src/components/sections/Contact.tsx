@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SocialIcon from "@/components/ui/SocialIcon";
+import ShareButton from "@/components/ui/ShareButton";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -158,6 +159,10 @@ export default function Contact() {
                 >
                   <MessageCircle size={22} />
                 </a>
+                <ShareButton
+                  variant="inline"
+                  className="!p-3 rounded-xl bg-white/5 hover:bg-gold/20 hover:!text-gold"
+                />
               </div>
             </div>
 

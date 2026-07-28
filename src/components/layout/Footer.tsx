@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import SocialIcon from "@/components/ui/SocialIcon";
+import ShareButton from "@/components/ui/ShareButton";
 
 const quickLinks = [
   { href: "#home", label: "Home" },
@@ -77,6 +78,7 @@ export default function Footer() {
               >
                 <SocialIcon name="youtube" size={20} />
               </a>
+              <ShareButton variant="inline" />
             </div>
           </div>
 

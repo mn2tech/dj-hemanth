@@ -12,6 +12,7 @@ export const siteConfig = {
   email: "bookings@djhemanth.com",
   address: "United States",
   whatsapp: "12023911581",
+  siteUrl: "https://dj-hemanth.com",
   logo: "/hemant-samson-logo.png",
   heroImage: "/dj-hemanth-hero.png",
   social: {

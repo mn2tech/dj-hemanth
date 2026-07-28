@@ -10,6 +10,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import Contact from "@/components/sections/Contact";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import ShareButton from "@/components/ui/ShareButton";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <ShareButton />
       <WhatsAppButton />
     </IntroGate>
   );
