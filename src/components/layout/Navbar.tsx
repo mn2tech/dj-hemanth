@@ -20,7 +20,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setPastHero(window.scrollY > window.innerHeight * 0.75);
+      const hero = document.getElementById("home");
+      const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : window.innerHeight;
+      setPastHero(window.scrollY > heroBottom - 80);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
