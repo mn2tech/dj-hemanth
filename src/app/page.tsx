@@ -1,3 +1,4 @@
+import IntroGate from "@/components/ui/IntroGate";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -9,12 +10,10 @@ import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import Contact from "@/components/sections/Contact";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import IntroSplash from "@/components/ui/IntroSplash";
 
 export default function Home() {
   return (
-    <>
-      <IntroSplash />
+    <IntroGate>
       <Navbar />
       <main>
         <Hero />
@@ -28,6 +27,6 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppButton />
-    </>
+    </IntroGate>
   );
 }
