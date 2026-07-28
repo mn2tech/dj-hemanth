@@ -16,11 +16,14 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight * 0.75);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -31,84 +34,99 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  const showBar = pastHero || isOpen;
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-deep-dark/95 backdrop-blur-lg shadow-lg shadow-black/20"
-          : "bg-transparent"
+    <>
+      {/* Mobile menu trigger while hero is visible (mockup has its own nav art) */}
+      {!pastHero && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed top-4 right-4 z-50 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:text-gold transition-colors lg:hidden"
+          aria-label="Open menu"
+        >
+          <Menu size={24} />
+        </button>
       )}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2 group">
-            <span className="text-2xl md:text-3xl font-bold tracking-tight">
-              <span className="text-brand-pink font-display italic">DJ</span>{" "}
-              <span className="text-white group-hover:text-gold transition-colors">
-                HEMANTH
+
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          showBar
+            ? "translate-y-0 bg-deep-dark/95 backdrop-blur-lg shadow-lg shadow-black/20"
+            : "-translate-y-full pointer-events-none"
+        )}
+      >
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <a href="#home" className="flex items-center gap-2 group pointer-events-auto">
+              <span className="text-2xl md:text-3xl font-bold tracking-tight">
+                <span className="text-brand-pink font-display italic">DJ</span>{" "}
+                <span className="text-white group-hover:text-gold transition-colors">
+                  HEMANTH
+                </span>
               </span>
-            </span>
-          </a>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-light-gray/80 hover:text-gold transition-colors text-sm font-medium tracking-wide"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a href="#contact" className="btn-primary text-sm !px-5 !py-2.5">
-              Book Now
             </a>
-          </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-white hover:text-gold transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-deep-dark/98 backdrop-blur-lg border-t border-white/10"
-          >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link, i) => (
-                <motion.a
+            <div className="hidden lg:flex items-center gap-8 pointer-events-auto">
+              {navLinks.map((link) => (
+                <a
                   key={link.href}
                   href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-lg text-light-gray hover:text-gold transition-colors py-2"
+                  className="text-light-gray/80 hover:text-gold transition-colors text-sm font-medium tracking-wide"
                 >
                   {link.label}
-                </motion.a>
+                </a>
               ))}
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="btn-primary w-full text-center mt-4"
-              >
+              <a href="#contact" className="btn-primary text-sm !px-5 !py-2.5">
                 Book Now
               </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-white hover:text-gold transition-colors pointer-events-auto"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </nav>
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden bg-deep-dark/98 backdrop-blur-lg border-t border-white/10 pointer-events-auto"
+            >
+              <div className="px-4 py-6 space-y-4">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-lg text-light-gray hover:text-gold transition-colors py-2"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+                <a
+                  href="#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="btn-primary w-full text-center mt-4"
+                >
+                  Book Now
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }
