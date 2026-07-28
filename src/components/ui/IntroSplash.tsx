@@ -2,9 +2,10 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, VolumeX } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
-const INTRO_DURATION_MS = 5500;
+const INTRO_DURATION_MS = 6000;
 
 interface IntroSplashProps {
   onComplete: () => void;
@@ -12,12 +13,17 @@ interface IntroSplashProps {
 
 export default function IntroSplash({ onComplete }: IntroSplashProps) {
   const [show, setShow] = useState(true);
+  const [audioStarted, setAudioStarted] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const completingRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const complete = useCallback(() => {
     if (completingRef.current) return;
     completingRef.current = true;
+
+    if (timerRef.current) clearTimeout(timerRef.current);
 
     const audio = audioRef.current;
     if (audio) {
@@ -29,24 +35,58 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
     onComplete();
   }, [onComplete]);
 
-  useEffect(() => {
+  const startAudio = useCallback(async () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioStarted) return true;
 
-    audio.volume = 0.65;
-    const playPromise = audio.play();
+    audio.volume = 0.8;
+    try {
+      await audio.play();
+      setAudioStarted(true);
+      setAutoplayBlocked(false);
+      return true;
+    } catch {
+      setAutoplayBlocked(true);
+      return false;
+    }
+  }, [audioStarted]);
 
-    if (playPromise) {
-      playPromise.catch(() => {});
+  const scheduleComplete = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(complete, INTRO_DURATION_MS);
+  }, [complete]);
+
+  useEffect(() => {
+    startAudio().then((played) => {
+      if (played) scheduleComplete();
+    });
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [startAudio, scheduleComplete]);
+
+  const handleTap = useCallback(async () => {
+    if (completingRef.current) return;
+
+    if (!audioStarted) {
+      const played = await startAudio();
+      if (played) scheduleComplete();
+      return;
     }
 
-    const timer = setTimeout(complete, INTRO_DURATION_MS);
-    return () => clearTimeout(timer);
-  }, [complete]);
+    complete();
+  }, [audioStarted, startAudio, scheduleComplete, complete]);
 
   return (
     <>
-      <audio ref={audioRef} src={siteConfig.introMusic} preload="auto" loop />
+      <audio
+        ref={audioRef}
+        src={siteConfig.introMusic}
+        preload="auto"
+        loop
+        playsInline
+      />
 
       <AnimatePresence onExitComplete={() => document.body.style.overflow = ""}>
         {show && (
@@ -56,12 +96,13 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.9, ease: "easeInOut" }}
             className="fixed inset-0 z-[200] flex items-center justify-center bg-black cursor-pointer"
-            onClick={() => {
-              const audio = audioRef.current;
-              if (audio && audio.paused) {
-                audio.play().catch(() => {});
+            onClick={handleTap}
+            onTouchStart={(e) => {
+              // iOS: start audio on touch without waiting for click
+              if (!audioStarted) {
+                e.preventDefault();
+                handleTap();
               }
-              complete();
             }}
           >
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -117,7 +158,11 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
                   <motion.div
                     key={i}
                     className="w-1.5 rounded-full bg-gold"
-                    animate={{ height: ["20%", "100%", "35%", "85%", "20%"] }}
+                    animate={
+                      audioStarted
+                        ? { height: ["20%", "100%", "35%", "85%", "20%"] }
+                        : { height: "20%" }
+                    }
                     transition={{
                       repeat: Infinity,
                       duration: 0.55,
@@ -128,14 +173,26 @@ export default function IntroSplash({ onComplete }: IntroSplashProps) {
                 ))}
               </motion.div>
 
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
-                className="text-light-gray/30 text-xs mt-10 tracking-widest uppercase"
+                className="flex items-center gap-2 mt-10 text-light-gray/50 text-xs tracking-widest uppercase"
               >
-                Tap to enter
-              </motion.p>
+                {autoplayBlocked && !audioStarted ? (
+                  <>
+                    <VolumeX size={14} className="text-brand-pink" />
+                    <span className="text-brand-pink">Tap to play tabla beats</span>
+                  </>
+                ) : audioStarted ? (
+                  <>
+                    <Volume2 size={14} className="text-gold animate-pulse" />
+                    <span>Tap again to enter</span>
+                  </>
+                ) : (
+                  <span>Loading beats…</span>
+                )}
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
